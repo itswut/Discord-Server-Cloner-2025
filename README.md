@@ -16,6 +16,8 @@ Discord Server Cloner is a tool designed to **replicate** an existing server’s
 2. **⚙ Open** `index.js` and configure the settings to your preference.  
 3. **🚀 Run** `start.bat` to launch the tool.  
 
+Alternatively, if you prefer not to download and install the tool, you can use the [Web version on replit.com](https://replit.com/@itswut/Discord-Server-Cloner-WORKING-2025?v=1) to clone your server directly.
+
 ---
 
 ## 🎯 Features  
@@ -24,7 +26,7 @@ Discord Server Cloner is a tool designed to **replicate** an existing server’s
 |-------------------------------|-------------|
 | 🔵 **Copy Roles**              | Duplicates all server roles, including permissions and colors. |
 | 📂 **Copy Categories**         | Replicates the server's category structure. |
-| 📜 **Copy Channels**           | Clones all channels (text, voice, forum etc.) with their respective settings. |
+| 📜 **Copy Channels**           | Clones all channels (text & voice) with their respective settings. |
 | 🔐 **Copy Permissions**        | Ensures channel permissions are carried over correctly. |
 | 😀 **Copy Emojis & Stickers**   | Transfers all custom emojis and stickers from the original server. |
 
@@ -37,4 +39,4 @@ Discord Server Cloner is a tool designed to **replicate** an existing server’s
 ---
 
 ## 📜 License  
-This project is for educational purposes only. The developer is **not responsible** for any misuse of this tool.  
+This project is for educational purposes only. The developer is **not responsible** for any misuse of this tool.

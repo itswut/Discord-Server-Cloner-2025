@@ -44,7 +44,7 @@ client.once('ready', async () => {
 		if (CONFIG.options.copyRoles) roleMap = await copyRoles(sourceGuild, targetGuild);
 		if (CONFIG.options.copyCategories) await copyCategories(sourceGuild, targetGuild, roleMap);
 		if (CONFIG.options.copyEmojis) await copyEmojis(sourceGuild, targetGuild);
-        if (CONFIG.options.copyServerInfo) await copyServerInfo(sourceGuild, targetGuild);
+        if (CONFIG.options.copyServerInfo.enabled) await copyServerInfo(sourceGuild, targetGuild);
 
 		console.log('✅ Cloning completed successfully.');
 	} catch (error) {

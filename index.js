@@ -7,10 +7,16 @@ const CONFIG = {
 	TARGET_GUILD_ID: "1340068750191497276", // Replace ID of the server you want to paste to
 	TOKEN: "", // Your discord token
 	options: {
-		deleteExisting: true,
-		copyRoles: true,
-		copyCategories: true,
-		copyEmojis: true
+		deleteExisting: true, // Delete all existing roles, channels, and emojis in the target server
+        copyServerInfo: { // Copy server name, icon, server banner(if nitro level high enough), etc.
+            enabled: true,
+            name: true,
+            icon: true,
+            banner: true,
+        },
+		copyRoles: true, // Copy roles from the source server
+		copyCategories: true, // Copy categories and channels from the source server
+		copyEmojis: true // Copy emojis from the source server
 	}
 };
 
@@ -38,6 +44,7 @@ client.once('ready', async () => {
 		if (CONFIG.options.copyRoles) roleMap = await copyRoles(sourceGuild, targetGuild);
 		if (CONFIG.options.copyCategories) await copyCategories(sourceGuild, targetGuild, roleMap);
 		if (CONFIG.options.copyEmojis) await copyEmojis(sourceGuild, targetGuild);
+        if (CONFIG.options.copyServerInfo) await copyServerInfo(sourceGuild, targetGuild);
 
 		console.log('✅ Cloning completed successfully.');
 	} catch (error) {
@@ -79,6 +86,24 @@ function fetchChannelPermissions(channel) {
 		allow: overwrite.allow.bitfield,
 		deny: overwrite.deny.bitfield
 	}));
+}
+
+async function copyServerInfo(sourceGuild, targetGuild) {
+    console.log('📝 Copying server info...');
+    try {
+        if (CONFIG.options.copyServerInfo.name) await targetGuild.setName(sourceGuild.name);
+        if (CONFIG.options.copyServerInfo.icon) {
+            const icon = await sourceGuild.iconURL({ dynamic: true, size: 4096 });
+            await targetGuild.setIcon(icon);
+        }
+        if (CONFIG.options.copyServerInfo.banner) {
+            const banner = await sourceGuild.bannerURL({ dynamic: true, size: 4096 });
+            if (banner) await targetGuild.setBanner(banner);
+        }
+        console.log('✅ Copied server info.');
+    } catch (error) {
+        console.log(`❌ Failed to copy server info: ${error.message}`);
+    }
 }
 
 async function copyRoles(sourceGuild, targetGuild) {
